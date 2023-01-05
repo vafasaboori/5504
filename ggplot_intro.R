@@ -1,6 +1,3 @@
-library(ggplot2)
-library(palmerpenguins)
-
 # ggplot2 is one of the core members of the tidyverse
 install.packages("tidyverse")
 library(tidyverse)
