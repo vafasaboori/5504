@@ -1,5 +1,7 @@
 <!-- shift + cmd + C for comments -->
+
 <!-- This is the YAML header -->
+
 ---
 title: "R_Markdown"
 author: "Vafa Saboori"
@@ -8,6 +10,7 @@ output: html_document
 ---
 
 <!-- This is a RMarkdown chunk -->
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -15,6 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <!-- Menu -> Help -> Markdown Quick Reference, Cheatsheet etc.  -->
 
 <!-- This is some text -->
+
 ## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
