@@ -120,3 +120,22 @@ ggplot(mpg, aes(x=class)) +
   geom_bar() +
   coord_flip()
 
+# Facet Wraps creates subplots based on a categorical variable
+ggplot(mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() + 
+  facet_wrap(~class)
+  
+# Facet Grid creates subplots based on two categorical variable
+ggplot(mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() + 
+  facet_grid(year ~ cyl)
+
+# Labels and Annotations
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point() +
+  labs(title = "Fuel Efficiency by Engine Volume",
+       subtitle = "Fuel Economy Data from 1998 to 2008 for 38 Popular Cae Models",
+       x = "Engine Volume (Liters)",
+       y = "Fuel Efficiency (Miles per Gallon",
+       color = "Car Type")
+# ctrl + shift + 6 (Maximize Plot Window)
