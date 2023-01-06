@@ -73,6 +73,26 @@ ggplot(data = mpg, aes(x = displ, y = hwy)) +
   geom_point(aes(color = class)) + 
   geom_smooth(se = FALSE)
 
+# Scales, let's start with a simple graph
+ggplot(mpg, mapping = aes(x = cty, y = hwy)) + 
+  geom_point()
+
+# let's reverse scales
+ggplot(mpg, mapping = aes(x = cty, y = hwy)) + 
+  geom_point() +
+  scale_x_reverse() +
+  scale_y_reverse()
+
+# Color Sclase
+ggplot(mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
+  geom_point() +
+  scale_color_brewer()
+
+# Color Palettes
+ggplot(mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
+  geom_point() +
+  scale_color_brewer(palette = 5)
+  
 # create a bar graph based on the class variable (categorical)
 ggplot(mpg, aes(x = class)) + 
   geom_bar()
@@ -89,5 +109,14 @@ ggplot(mpg, aes(x = hwy)) +
 ggplot(mpg, aes(x = class, fill = drv)) + 
   geom_bar()
 
+# Cartesian Coordinate System
+# Limit X Axis
+ggplot(mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() + 
+  coord_cartesian(xlim=c(0,5))
 
+# Bar graph with flipped bars
+ggplot(mpg, aes(x=class)) +
+  geom_bar() +
+  coord_flip()
 

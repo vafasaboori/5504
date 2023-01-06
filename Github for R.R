@@ -24,10 +24,23 @@ use_git()
 # Make a Commit and View More History: https://vimeo.com/511800674
 
 # Connect RStudio and GitHub
-    # Sign up for GitHub
-    # 
+  # Sign up for GitHub
+  # Create a Personal Access Token (PAT) on GitHub: https://vimeo.com/511801645
+  
+library(usethis)
+create_github_token()
 
+# Store PPAT to Connect RStudio and GitHub: https://vimeo.com/511803103
 
+library(gitcreds)
+gitcreds_set()
+
+# How to Connect RStudio Projects with GitHub Repositories: https://vimeo.com/511804087
+library(usethis)
+use_github()
+
+# General Work-flow (Push): https://vimeo.com/511805399 
+# General Work-flow (Pull): https://vimeo.com/511805818
 
 
 
