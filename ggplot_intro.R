@@ -2,12 +2,16 @@
 install.packages("tidyverse")
 library(tidyverse)
 
-#mpg data frame found in ggplot2
+# mpg data frame found in ggplot2
 library(ggplot2)
 ggplot2::mpg
 
 # To plot mpg, run this code to put displ on the x-axis and hwy on the y-axis:
 ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point()
+
+# Alternate method
+mpg %>% ggplot(aes(x = displ, y = hwy)) + #shortcut for pipe shift + command + m 
   geom_point()
 
 # map the colors of points to the class variable to reveal the class of each car
