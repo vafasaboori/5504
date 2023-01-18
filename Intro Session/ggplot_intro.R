@@ -7,8 +7,8 @@ library(ggplot2)
 ggplot2::mpg
 
 # To plot mpg, run this code to put displ on the x-axis and hwy on the y-axis:
-ggplot(mpg, aes(x = displ, y = hwy)) + 
-  geom_point()
+ggplot(mpg, aes(x = displ, y = hwy)) +
+    geom_point()
 
 # Alternate method
 mpg %>% ggplot(aes(x = displ, y = hwy)) + #shortcut for pipe shift + command + m 
@@ -44,7 +44,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 ggplot(mpg, aes(x = displ, y = hwy)) + 
   geom_smooth()
 
-# different linetype for each unique value of the mapped variable
+# different line type for each unique value of the mapped variable
 ggplot(mpg, aes(x = displ, y = hwy, linetype = drv)) + 
   geom_smooth()
 
@@ -72,7 +72,7 @@ ggplot(data = mpg, aes(x = displ, y = hwy, color = class)) +
   geom_point() + 
   geom_smooth(se = FALSE)
 
-# different color for each class with a single trend-line for entire dataset
+# different color for each class with a single trend-line for entire data set
 ggplot(data = mpg, aes(x = displ, y = hwy)) + 
   geom_point(aes(color = class)) + 
   geom_smooth(se = FALSE)
@@ -123,11 +123,6 @@ ggplot(mpg, mapping = aes(x = displ, y = hwy)) +
 ggplot(mpg, aes(x=class)) +
   geom_bar() +
   coord_flip()
-
-# Facet Wraps creates subplots based on a categorical variable
-ggplot(mpg, mapping = aes(x = displ, y = hwy)) +
-  geom_point() + 
-  facet_wrap(~class)
   
 # Facet Grid creates subplots based on two categorical variable
 ggplot(mpg, mapping = aes(x = displ, y = hwy)) +

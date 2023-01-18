@@ -28,7 +28,7 @@ use_git()
   # Create a Personal Access Token (PAT) on GitHub: https://vimeo.com/511801645
   
 library(usethis)
-create_github_token()
+create_github_token()use
 
 # Store PPAT to Connect RStudio and GitHub: https://vimeo.com/511803103
 
