@@ -1,5 +1,7 @@
 # Clear the environment
 rm(list = ls())
+
+# Set the working directory
 setwd("~/Documents/5504/Ch_14")
 
 # Section 1 ----
