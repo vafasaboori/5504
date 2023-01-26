@@ -5,7 +5,7 @@ rm(list = ls())
 setwd("~/Documents/5504/Ch_14")
 
 # Q1 ----
-Q1 <- data.frame(x=c(2, 6, 9, 13, 20), y=c(7, 18, 9, 26, 23))
+Q1 <- data.frame(x = c(2, 6, 9, 13, 20), y = c(7, 18, 9, 26, 23))
 
 # Part a, Scatter Plot
 plot (Q1$x, Q1$y)
@@ -20,6 +20,8 @@ Q1 %>% ggplot(aes(x, y)) + # coordinate system
 # Part b, regression
 slr1 <- lm(y ~ x, data = Q1)
 summary(slr1)
+coef(slr1)
+
 predict(slr1, data.frame(x=6))
 
 # Q2 ----
@@ -60,7 +62,7 @@ Q3 <- read_excel("landscape.xlsx")
 summary(Q3)
 
 # Rename one variables (too long)
-colnames(Q3) <- c( "value", "exp")
+colnames(Q3) <- c("value", "exp")
 
 # Part a, Scatter Plot
 plot (Q3$value, Q3$exp)
@@ -77,6 +79,7 @@ Q3 %>% ggplot(aes(value, exp)) + # coordinate system
 # part c, regression
 slr3 <- lm(exp ~ value, data = Q3)
 summary(slr3)
+coefficients(slr3)
 
 # part d, variable cost
 coefficients(slr3)[2] # should be multiplied by 1000
@@ -119,6 +122,7 @@ Q5 <- data.frame(x=c(2, 6, 9, 13, 20), y=c(7, 18, 9, 26, 23))
 
 # part a, SSR SSE SST
 slr5 <- lm(y ~ x, data = Q5)
+
 library("car") # Companion to Applied Regression
 anova <- anova(slr5)
 
@@ -132,7 +136,7 @@ summary (slr5)$r.squared
 
 
 # Q6 ----
-Q6 <- data.frame(x =c (400, 450, 550, 600, 700, 750), 
+Q6 <- data.frame(x = c (400, 450, 550, 600, 700, 750), 
                  y = c(4000, 5000, 5400, 5900, 6400, 7000))
 
 # part a, regression
@@ -172,11 +176,11 @@ library(car)
 anova(slr8)
 
 # Q9 ----
-Q9 <- data.frame(x <- c(3, 12, 6, 20, 14),
-                 y <- c(55, 40, 55, 10, 15))
+Q9 <- data.frame(x = c(3, 12, 6, 20, 14),
+                 y = c(55, 40, 55, 10, 15))
 slr9 <- lm(y ~ x, data = Q9)
 summary(slr9)
-data <- data.frame(x=8)
+
 predict(slr9, data.frame(x=8), interval = "confidence")
 predict(slr9, data.frame(x=8), interval = "prediction")
 
@@ -195,8 +199,10 @@ summary(Q11)
 
 # rename all variables
 colnames(Q11) <- c("city", "Rate", "Ent")
+
 slr11 <- lm(Ent ~ Rate, data = Q11)
 summary(slr11)
+
 predict(slr11, data.frame(Rate=89), interval = "confidence")
 predict(slr11, data.frame(Rate=128), interval = "prediction")
 
@@ -214,16 +220,23 @@ slr13$residuals
 # Residual plot against y hat
 plot(slr13, which = 1)
 
-# Residual plot against x 
+# Residual plot against x and y-hat
 Q13$predicted <- fitted(slr13)
 Q13$residuals <- residuals(slr13)
 
 library(tidyverse)
+
+# Residual plot against y hat 
 Q13 %>% ggplot(aes(predicted , residuals)) + 
   geom_point() +
   geom_smooth(method = 'lm', se = FALSE)  # we observe no pattern
 
-# Residual plot against y hat
+# Residual plot against x
+Q13 %>% ggplot(aes(x , residuals)) + 
+  geom_point() +
+  geom_smooth(method = 'lm', se = FALSE)  # we observe no pattern
+
+# Std Residual plot against y hat
 Q13$std_residuals <- rstandard(slr13)
 Q13 %>% ggplot(aes(x = predicted, y =std_residuals)) + 
   geom_point() +
@@ -241,7 +254,7 @@ summary(slr14)
 # part b std res
 Q14$std_rediduals <- rstandard(slr14) # last observation is an outlier
 
-#part c hat values
+# part c hat values
 Q14$hat <- hatvalues(slr14)  # last observation is greater than 6/8=0.75
 qplot (Q14$x, Q14$hat) +
   geom_hline(yintercept=0.75, linetype="dashed", color = "red")
@@ -268,7 +281,7 @@ summary(slr15)
 
 # part d residual analysis
 plot (slr15, which = 1)
-plot (slr15, which = 5) #obs 32 is an outlier
+plot (slr15, which = 5) # obs 32 is an outlier
 
 # using std residuals
 Q15$std_residuals <- rstandard(slr15) #obs 32 is an outlier
@@ -338,3 +351,9 @@ anova(buckeye_slr)
 # Residuals Analysis
 plot(buckeye_slr, which =1) # Fan (Not Good!)
 plot(buckeye_slr, which =5) # No outliers
+
+# 1 = residuals versus fitted
+# 2 = QQ plot
+# 3 = Scale-Location
+# 4 = Cook's Distance
+# 5 = Williams-like Graph
