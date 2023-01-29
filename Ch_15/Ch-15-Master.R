@@ -254,4 +254,14 @@ exp(simmons_model$coefficients[-1]) # we don't need intercept
 
 # To predict individual we do this:
 predict(simmons_model, data.frame(Card = 1, Spending = 4.2), type = "response")
+# type = 'response' specifies that you want predicted probabilities of the outcome being positive.
 # probability of a cardholder with 4.2k spending is %59.6
+
+predict(simmons_model, data.frame(Card = 1, Spending = 4.2))
+# without "type = 'response'" you will get the log odds, aka logits (logarithms of odds ratios). 
+# logit of a cardholder with 4.2k spending is %38.7
+
+# To convert logit ln(p/1-p) to probability use the inverse logit function
+p <- 1 / (1 + exp(-0.387261))
+p
+# # logit of %38 corresponds to probability of %59.6
