@@ -243,25 +243,28 @@ summary(simmons_model)
 
 #let's focus on the coefficients
 coefficients(simmons_model)
-# coefficients are log-odds (ln(odds) and by themselves are hard to interpret
+
+# coefficients represent  change in  log odds of the dependent variable
+# coefficients represent changes in log-odds (ln(odds) of dv and by themselves are hard to interpret
 # we need to convert them to odds ratio using exp() function 
 exp(simmons_model$coefficients[-1]) # we don't need intercept
+
 # odds-ratios interpretation for IVs
 # categorical IV (e.g. card): the odds of cardholders using coupon vs non-cardholders
   # card = 3, odds of a cardholder using the coupon are 3x a non-cardholder
 # continuous IV (e.g. spending): the odds of using coupon increased for every additional 1k
   # spending = 1.4, for every 1k increase in spending, odds of using coupon is 40% higher
 
-# To predict individual we do this:
+# To predict individual probabilities we use this:
 predict(simmons_model, data.frame(Card = 1, Spending = 4.2), type = "response")
-# type = 'response' specifies that you want predicted probabilities of the outcome being positive.
+# type = 'response' specifies that you want predicted probabilities
 # probability of a cardholder with 4.2k spending is %59.6
 
 predict(simmons_model, data.frame(Card = 1, Spending = 4.2))
 # without "type = 'response'" you will get the log odds, aka logits (logarithms of odds ratios). 
 # logit of a cardholder with 4.2k spending is %38.7
 
-# To convert logit ln(p/1-p) to probability use the inverse logit function
+# To convert logit "ln(p/1-p)" to probability use the inverse logit function
 p <- 1 / (1 + exp(-0.387261))
-p
-# # logit of %38 corresponds to probability of %59.6
+print (p)
+# logit value of %38 corresponds to probability value of of %59.6
