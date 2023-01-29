@@ -4,7 +4,7 @@ rm(list = ls())
 # Set the working directory
 setwd("~/Documents/5504/Ch_15")
 
-# Section 1 Multiple Regression Coeffecients ----
+# Section 1 Multiple Regression Coefficients ----
 
 # Read Excel file in R
 library(readxl)
@@ -101,13 +101,14 @@ corrplot(cor(mtcars), method = "number")
 # alt method
 library(GGally)
 ggcorr(mtcars, label = TRUE)
+?ggcorr # help file
 
 # alt method
 library(PerformanceAnalytics)
 chart.Correlation(mtcars,
                   histogram = TRUE)
 
-# Section 7 In Class Practice (Q15-25 AutoResale) ----
+# Section 7 In Class Practice (Q15-25 Auto-Resale) ----
 
 # Read Excel file in R
 library(readxl)
@@ -147,9 +148,6 @@ confint(nfl_model, level = .95)
 #Part a
 predict(nfl_model, data.frame(offense=225, defense=300), interval = "confidence", level = .95)
 predict(nfl_model, data.frame(offense=225, defense=300), interval = "prediction", level = .95)
-
-
-
 
 # Section 9 Categorical Independent Variables ----
 # Read Excel file in R
@@ -214,7 +212,7 @@ butler_model <- lm(Time ~ Miles + Deliveries, data = butler)
 butler_model$coefficients # coefficients
 
 # residual analysis
-plot(butler_model, which = 3)
+plot(butler_model, which = 5)
 # 1 = residuals versus fitted
 # 2 = QQ plot
 # 3 = Scale-Location
@@ -248,7 +246,6 @@ coefficients(simmons_model)
 # coefficients are log-odds (ln(odds) and by themselves are hard to interpret
 # we need to convert them to odds ratio using exp() function 
 exp(simmons_model$coefficients[-1]) # we don't need intercept
-
 # odds-ratios interpretation for IVs
 # categorical IV (e.g. card): the odds of cardholders using coupon vs non-cardholders
   # card = 3, odds of a cardholder using the coupon are 3x a non-cardholder
@@ -258,4 +255,3 @@ exp(simmons_model$coefficients[-1]) # we don't need intercept
 # To predict individual we do this:
 predict(simmons_model, data.frame(Card = 1, Spending = 4.2), type = "response")
 # probability of a cardholder with 4.2k spending is %59.6
-
