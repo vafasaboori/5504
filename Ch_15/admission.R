@@ -28,7 +28,13 @@ summary(admission_logit)
 exp(coef(admission_logit))
 
 admission$fitted_Prob <- predict(admission_logit, type = "response")
+
 # It can also be helpful to use graphs of predicted probabilities
+
+# first plot GRE vs Admission Probability categorized by Rank
 ggplot(admission, aes(x = gre, y = fitted_Prob)) + 
-  geom_smooth(aes(colour = rank),
-                                                                                                                      size = 1)
+  geom_smooth(aes(colour = rank))
+              
+# second plot GPA vs Admission Probability categorized by Rank
+ggplot(admission, aes(x = gpa, y = fitted_Prob)) + 
+                geom_smooth(aes(colour = rank))                                                                                                              size = 1)
