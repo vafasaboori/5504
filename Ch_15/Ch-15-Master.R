@@ -18,7 +18,7 @@ butler_model$coefficients # coefficients
 # Section 2 R2 and Adjusted R2 ----
 summary(butler_model) 
 summary(butler_model)$r.squared # R2
-summary(butler_model)$adj.r.squared # R2
+summary(butler_model)$adj.r.squared # Adjusted R2
 
 # alt method rsq package
 library(rsq)
