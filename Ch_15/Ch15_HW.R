@@ -380,7 +380,7 @@ summary(nascar_model_3)
 # we get better results because we greatly reduced the multicollinearity
 # Multicollinearity is reduced by replacing Top 5 with Top 2–5 and replacing Top 10 with Top 6–10.
 # Correlation Matrix below provides evidence of this.
-cor(nascar[, -c(1,5,6)]) # excluding driver, top5, and top10
+round(cor(nascar[, -c(1,5,6)]),2) # excluding driver, top5, and top10
 
 library(PerformanceAnalytics)
 chart.Correlation(nascar[, -c(1,5,6)],
@@ -397,10 +397,10 @@ summary(nascar_model_4)
 
 # case (Lakeland) ----
 
-#Part a) logit(Return) = b0 + b1(Program) +b2(GPA)
+#Part a) logit(Return) = b0 + b1(Program) + b2(GPA)
 
 #Part b) What is the interpretation of E( y) when x2 = 0?
-# For a given GPA, it's the prob. that a student who not attend orientation will return for sophomore year.
+# For a given GPA, it's the prob. that a student who not attended orientation will return for sophomore year.
 
 #Part c) Logistic Regression (Estimated Logit is the reg. equation 15.37)
 
@@ -421,10 +421,12 @@ exp(lakeland_model$coefficients[-1]) # we don't need intercept
 # program = 4.76, odds of an attendee returning are 4.76x a non-attendee
 
 # continuous IV (e.g. GPA): the odds of returning increased for every additional unit of GPA
-# GPA = 12.66, for every unit increase in GPA, odds of using coupon is 12.67x higher
+# GPA = 12.66, for every unit increase in GPA, odds of returning as a sophomore is 12.67x higher
 
 # Part d) Overall Significance
 summary(lakeland_model)
+
+# alt method
 library(car)
 Anova(lakeland_model, test = "LR") # likelihood ratio test
 
