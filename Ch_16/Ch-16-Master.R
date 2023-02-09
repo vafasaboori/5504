@@ -336,6 +336,8 @@ ols_step_both_p(ob_model, pent=.05, prem=.05, details = T)
 
 # Best subsets regression
 ols_step_best_subset(ob_model)
+# We look for high r-squared and low AIC, SBIC, and SBC
+# Using this criteria, model 3 seems to be the best model
 
 # Secton 8 DOE (GMAT) ----
 
