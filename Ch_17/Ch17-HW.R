@@ -634,8 +634,3 @@ sum(Lost_Sales$Carl_LS)
 
 # Carlson suffered a business interruption claim of $15,867,000.
 
-
-
-
-
-
